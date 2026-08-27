@@ -4,10 +4,15 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import dotenv from 'dotenv'
 
-// import connectDB from './config/db.js'
-import connectDB from './config/db.js'
 
- 
+
+// error middleware
+import { errorMiddleware } from './middlewars/errorMiddleware.js';
+
+import authRoutes from './routes/authRoutes.js';
+import transactionRoutes from './routes/transactionRoutes.js';
+
+
 
 dotenv.config()
 
@@ -19,13 +24,23 @@ app.use(helmet())
 app.use(cors())
 
 
+app.use('/api/auth', authRoutes);
+app.use('/api/transactions', transactionRoutes);
+
+
+
+
+
+app.use(errorMiddleware)
+
+
 app.get('/health', (req, res) => {
     res.status(200).json({
         status: 'ok',
         message: 'AI Financial Coach is running!',
     })
-      
- })
+
+})
 
 
 export default app
