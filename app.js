@@ -7,11 +7,11 @@ import dotenv from 'dotenv'
 
 
 // error middleware
-import { errorMiddleware } from './middlewars/errorMiddleware.js';
+import { errorMiddleware } from './middlewares/errorMiddleware.js';
 
 import authRoutes from './routes/authRoutes.js';
 import transactionRoutes from './routes/transactionRoutes.js';
-
+import budgetRoutes from './routes/budgetRoutes.js';
 
 
 dotenv.config()
@@ -26,6 +26,8 @@ app.use(cors())
 
 app.use('/api/auth', authRoutes);
 app.use('/api/transactions', transactionRoutes);
+app.use("/api/budgets", budgetRoutes);
+
 
 
 
